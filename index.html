@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berk Tanriverdio | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      padding-bottom: 60px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.92);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 0.75fr 1.15fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      padding: 30px 0 10px;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-text p {
+      max-width: 650px;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--accent-dark);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 22px;
+      padding: 26px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-card li {
+      color: rgba(255,255,255,0.95);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+    }
+
+    main {
+      margin-top: -30px;
+      padding-bottom: 50px;
+    }
+
+    section {
+      margin: 24px 0;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 780px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .info-box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: #fcfcfd;
+    }
+
+    .info-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .info-box p,
+    .info-box li {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .info-box ul {
+      padding-left: 18px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: 16px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      background: #eff6ff;
+      color: var(--accent-dark);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .image-showcase {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .image-showcase img {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 24px 24px 12px;
+      object-fit: contain;
+    }
+
+    .image-caption {
+      padding: 0 24px 24px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.96rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .project-top {
+      padding: 22px;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 18px 0 34px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-photo img {
+        max-width: 220px;
+      }
+
+      .hero,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 22px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Berk Tanriverdio | Portfolio</div>
+        <div class="nav-links">
+          <a href="#over-mij">Over mij</a>
+          <a href="#sprints">Sprints</a>
+          <a href="#projecten">Opdrachten</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <a href="Figma high fidelity (1).pdf" target="_blank">Figma</a>
+          <a href="Curriculum Vitae_Berk Tanriverdio v2.pdf" target="_blank">CV</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div class="hero-photo">
+          <img src="berk-profiel.png" alt="Portretfoto van Berk Tanriverdio" />
+        </div>
+
+        <div class="hero-text">
+          <h1>Persoonlijk portfolio</h1>
+          <p>
+            Ik ben Berk Tanriverdio, student HBO-ICT. Op deze website laat ik zien wie ik ben,
+            welke resultaten ik in sprint 1 heb behaald en wat mijn toegevoegde waarde was binnen
+            projecten en teamopdrachten. Binnen deze sprint heb ik gewerkt aan onderzoek,
+            doelgroepanalyse, wireframes, testen en technische ondersteuning bij de escape room.
+          </p>
+          <div class="btn-group">
+            <a class="btn btn-primary" href="#sprints">Bekijk mijn resultaten</a>
+            <a class="btn btn-secondary" href="#over-mij">Lees meer over mij</a>
+            <a class="btn btn-secondary" href="Curriculum Vitae_Berk Tanriverdio v2.pdf" target="_blank">Bekijk mijn cv</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Wat vind je op deze website?</h3>
+          <ul>
+            <li>Een korte introductie over mij als student</li>
+            <li>Mijn sprintresultaten en behaalde opleveringen</li>
+            <li>Mijn rol en toegevoegde waarde binnen projecten</li>
+            <li>Mijn vaardigheden, tools en ontwikkeling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="over-mij">
+      <div class="card">
+        <h2 class="section-title">Over mij</h2>
+        <p class="section-subtitle">
+          Ik ben een gemotiveerde HBO-ICT student die graag werkt aan digitale oplossingen,
+          gebruiksvriendelijke ontwerpen en projectresultaten die echt waarde toevoegen.
+          Binnen samenwerkingen neem ik verantwoordelijkheid, denk ik actief mee en werk ik
+          gericht naar een duidelijk eindresultaat toe.
+        </p>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <h3>Wie ben ik?</h3>
+            <p>
+              Mijn naam is Berk Tanriverdio. Ik volg de opleiding HBO-ICT en werk tijdens projecten
+              aan onderzoek, ontwerp, uitwerking en het presenteren van resultaten. In sprint 1 heb
+              ik vooral laten zien dat ik zowel analytisch als creatief kan werken. Ik houd me niet
+              alleen bezig met het uitwerken van ideeën, maar ook met het verbeteren van de
+              gebruikerservaring en het opleveren van concrete producten waar het team verder mee kan.
+            </p>
+          </div>
+          <div class="info-box">
+            <h3>Hoe werk ik?</h3>
+            <ul>
+              <li>Ik werk gestructureerd en doelgericht</li>
+              <li>Ik denk mee over oplossingen en verbeteringen</li>
+              <li>Ik neem verantwoordelijkheid voor mijn taken</li>
+              <li>Ik lever graag iets op waar het team direct mee verder kan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sprints">
+      <div class="card">
+        <h2 class="section-title">Sprintresultaten</h2>
+        <p class="section-subtitle">
+          Tot nu toe heb ik één sprint afgerond. Binnen deze sprint hebben we per week aan
+          verschillende datapunten gewerkt. Hieronder laat ik zien wat mijn bijdrage was en welke
+          resultaten ik daarbij heb behaald.
+        </p>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>Week 1 – Datapunt 1: Escape room</h3>
+            <p>
+              In de eerste week werkte ik mee aan de escape room. Mijn bijdrage bestond uit zowel
+              een technisch als creatief onderdeel.
+            </p>
+            <p><strong>Mijn bijdrage:</strong> Ik heb de welkomstposter van de escape room gemaakt. Daarnaast was mijn taak om de Arduino technisch werkend te maken met Python en mee te denken over het ontwerp en de puzzelstructuur van de escape room.</p>
+            <p><strong>Resultaat:</strong> Een werkende basis voor de technische kant van de escape room en een visuele start in de vorm van een welkomstposter die de beleving ondersteunde.</p>
+            <div class="tag-list">
+              <span class="tag">Arduino</span>
+              <span class="tag">Python</span>
+              <span class="tag">Ontwerp</span>
+              <span class="tag">Poster</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <h3>Week 2 – Datapunt 2: Benchmarkonderzoek</h3>
+            <p>
+              In deze week lag de focus op onderzoek naar bestaande systemen en het analyseren van
+              sterke en zwakke punten.
+            </p>
+            <p><strong>Mijn bijdrage:</strong> Mijn taak binnen het project was het onderzoeken en analyseren van Google Agenda. Daarnaast heb ik samen met mijn team de SWOT-analyse opgesteld. Ook heb ik meegewerkt aan de gezamenlijke benchmarkanalyse en het bespreken van de resultaten.</p>
+            <p><strong>Resultaat:</strong> Een onderbouwde benchmarkanalyse met inzichten uit Google Agenda en een SWOT-analyse die gebruikt kon worden als basis voor verdere ontwerpkeuzes.</p>
+            <div class="tag-list">
+              <span class="tag">Benchmark</span>
+              <span class="tag">Google Agenda</span>
+              <span class="tag">SWOT</span>
+              <span class="tag">Analyse</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <h3>Week 3 – Datapunt 3: Doelgroepanalyse</h3>
+            <p>
+              Tijdens deze week was ik verantwoordelijk voor het opstellen van de volledige
+              doelgroepanalyse binnen de design brief.
+            </p>
+            <p><strong>Mijn bijdrage:</strong> Ik zorgde voor een heldere contextbeschrijving, doelgroepsegmentatie, twee uitgewerkte persona’s (primair en secundair), een empathy map, een customer journey voor Kevin en een onderbouwde koppeling tussen inzichten en ontwerpkeuzes.</p>
+            <p><strong>Resultaat:</strong> Een complete en goed onderbouwde doelgroepanalyse die als basis diende voor het verdere ontwerp van het project.</p>
+            <div class="tag-list">
+              <span class="tag">Persona's</span>
+              <span class="tag">Empathy map</span>
+              <span class="tag">Customer journey</span>
+              <span class="tag">Design brief</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <h3>Week 4 – Datapunt 4: Wireframes</h3>
+            <p>
+              In deze week werkte ik de volledige gebruikersflow uit in wireframes en liet ik zien hoe
+              feedback het ontwerp heeft verbeterd.
+            </p>
+            <p><strong>Mijn bijdrage:</strong> Mijn taak was om de volledige flow uit te werken in wireframes (beginscherm → home/overzicht → details → reservering → bevestiging) en daarbij de interactie duidelijk te maken. Daarnaast moest ik feedback verzamelen van minimaal twee medestudenten en laten zien welke verbeteringen ik heb doorgevoerd van low naar mid.</p>
+            <p><strong>Resultaat:</strong> Een complete wireflow waarin de belangrijkste schermen en interacties duidelijk zichtbaar waren, inclusief verbeteringen op basis van ontvangen feedback.</p>
+            <div class="tag-list">
+              <span class="tag">Wireframes</span>
+              <span class="tag">Flow</span>
+              <span class="tag">Feedback</span>
+              <span class="tag">Iteratie</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <h3>Week 5 – Datapunt 5: Testen van high fidelity wireframes</h3>
+            <p>
+              In de laatste week van deze sprint lag de focus op het testen van de high fidelity
+              wireframes met gebruikers.
+            </p>
+            <p><strong>Mijn bijdrage:</strong> Ik heb de testen uitgevoerd voor de high fidelity wireframes en verschillende testscenario’s opgezet voor gebruikers.</p>
+            <p><strong>Resultaat:</strong> Praktische testinzichten waarmee duidelijk werd welke onderdelen goed werkten en waar nog verbeteringen mogelijk waren binnen het ontwerp.</p>
+            <div class="tag-list">
+              <span class="tag">Usability testen</span>
+              <span class="tag">Scenario's</span>
+              <span class="tag">High fidelity</span>
+              <span class="tag">Gebruikersinzichten</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2 class="section-title">Mijn toegevoegde waarde</h2>
+        <p class="section-subtitle">
+          Binnen projecten probeer ik niet alleen mijn eigen taken goed uit te voeren, maar ook het
+          team te helpen met overzicht, structuur en bruikbare oplossingen.
+        </p>
+
+        <div class="grid-3">
+          <div class="info-box">
+            <h3>Meedenken</h3>
+            <p>Ik denk actief mee over verbeteringen, ontwerpkeuzes en manieren om het project sterker te maken.</p>
+          </div>
+          <div class="info-box">
+            <h3>Uitwerken</h3>
+            <p>Ik zet ideeën om in concrete resultaten, zoals teksten, ontwerpen, analyses, wireframes en duidelijke content.</p>
+          </div>
+          <div class="info-box">
+            <h3>Samenwerken</h3>
+            <p>Ik werk prettig samen, communiceer duidelijk en zorg dat mijn bijdrage aansluit op wat het team nodig heeft.</p>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 22px;">
+          <div class="info-box">
+            <h3>Mijn rol binnen sprint 1</h3>
+            <p>
+              Binnen sprint 1 had ik een brede rol. Ik werkte mee aan zowel onderzoek als ontwerp en
+              testing. Ik hield me bezig met het analyseren van bestaande systemen, het opstellen van
+              de doelgroepanalyse, het uitwerken van wireframes en het voorbereiden van gebruikerstesten.
+              Daarnaast heb ik bij de escape room ook een technisch en visueel aandeel gehad door te
+              werken met Arduino, Python en de welkomstposter.
+            </p>
+          </div>
+          <div class="info-box">
+            <h3>Waar mijn kracht lag</h3>
+            <p>
+              Mijn kracht lag vooral in het combineren van structuur en creativiteit. Ik kon onderzoek
+              vertalen naar concrete ontwerpkeuzes en ideeën omzetten in tastbare resultaten. Daardoor
+              leverde ik niet alleen inhoud aan, maar ook producten waar het team direct mee verder kon.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projecten">
+      <div class="card">
+        <h2 class="section-title">Opdrachten</h2>
+        <p class="section-subtitle">
+          Binnen deze sprint heb ik aan meerdere onderdelen gewerkt. Hieronder staan de
+          belangrijkste projectonderdelen waarin mijn bijdrage zichtbaar was.
+        </p>
+
+        <div class="grid-2">
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Escape room</h3>
+            </div>
+            <div class="project-body">
+              <p><strong>Context:</strong> Een interactieve escape room waarin techniek, ontwerp en puzzelstructuur samenkomen.</p>
+              <p><strong>Mijn rol:</strong> Werken aan de welkomstposter, de Arduino technisch werkend maken met Python en meedenken over de opbouw van de puzzels.</p>
+              <p><strong>Resultaat:</strong> Een combinatie van technische uitwerking en visuele ondersteuning voor de gebruikerservaring.</p>
+            </div>
+            <div class="image-showcase">
+              <img src="escape-room-poster.png" alt="Welkomstposter van de escape room" />
+              <div class="image-caption">
+                Dit is de welkomstposter die ik heb gemaakt voor de escape room. De poster was bedoeld
+                om bezoekers meteen in de sfeer van de opdracht te brengen en de technologische insteek
+                van de escape room duidelijk te maken.
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Benchmark en analyse</h3>
+            </div>
+            <div class="project-body">
+              <p><strong>Context:</strong> Onderzoek naar bestaande oplossingen als basis voor een beter eigen ontwerp.</p>
+              <p><strong>Mijn rol:</strong> Analyse van Google Agenda, meewerken aan de benchmark en samen opstellen van de SWOT-analyse.</p>
+              <p><strong>Resultaat:</strong> Onderbouwde inzichten die gebruikt konden worden voor ontwerpkeuzes en verdere uitwerking.</p>
+            </div>
+            <div class="image-showcase">
+              <img src="swot-analyse.png" alt="SWOT-analyse van het benchmarkonderzoek" />
+              <div class="image-caption">
+                Dit is de SWOT-analyse die is opgesteld als onderdeel van het benchmarkonderzoek.
+                Hiermee zijn de belangrijkste strengths, weaknesses, opportunities en threats van de
+                onderzochte oplossing overzichtelijk in kaart gebracht.
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Doelgroepanalyse</h3>
+            </div>
+            <div class="project-body">
+              <p><strong>Context:</strong> Een design brief waarin de gebruiker centraal staat.</p>
+              <p><strong>Mijn rol:</strong> Uitwerken van context, doelgroepsegmentatie, persona’s, empathy map en customer journey.</p>
+              <p><strong>Resultaat:</strong> Een sterke inhoudelijke basis voor ontwerpkeuzes binnen het project.</p>
+            </div>
+            <div class="image-showcase">
+              <img src="empathy-map.png" alt="Empathy map van de doelgroepanalyse" />
+              <div class="image-caption">
+                Dit is de empathy map die ik heb gemaakt als onderdeel van de doelgroepanalyse.
+                Hiermee heb ik inzichtelijk gemaakt wat de gebruiker denkt, voelt, ziet, hoort en doet,
+                inclusief de belangrijkste pain en gain punten.
+              </div>
+            </div>
+
+            <div class="image-showcase">
+              <img src="customer-journey-map.png" alt="Customer journey map van de gebruiker" />
+              <div class="image-caption">
+                Dit is de customer journey map die ik heb gemaakt voor de gebruiker Kevin. Hierin heb
+                ik per stap uitgewerkt welke acties, ervaringen, knelpunten en oplossingen binnen de
+                app belangrijk zijn.
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Wireframes en testen</h3>
+            </div>
+            <div class="project-body">
+              <p><strong>Context:</strong> Het visualiseren en verbeteren van de gebruikersflow van het reserveringssysteem.</p>
+              <p><strong>Mijn rol:</strong> Uitwerken van de volledige flow in wireframes, feedback ophalen en testscenario’s opzetten voor de high fidelity wireframes.</p>
+              <p><strong>Resultaat:</strong> Een duidelijkere gebruikersflow en concrete testinzichten voor verdere verbetering.</p>
+
+              <div class="image-showcase">
+                <img src="testscript-wireframes.png" alt="Testscript voor de high fidelity wireframes" />
+                <div class="image-caption">
+                  Dit is een van de testscenario’s die ik heb opgesteld voor het testen van de high fidelity
+                  wireframes. In dit testscript staat het gebruikersdoel, het testscenario, de te testen
+                  functie, de stappen en het verwachte resultaat beschreven.
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="image-showcase">
+          <img src="beginscherm-wireframe.png" alt="Beginscherm wireframe van de vergader app" />
+          <div class="image-caption">
+            Dit is het beginscherm dat ik in Figma heb gemaakt voor de wireframes van de vergader app BT.
+            In dit scherm staat de eerste interactie centraal: inloggen, registreren of als gast verder gaan.
+          </div>
+        </div>
+
+        <div class="image-showcase">
+          <img src="home-screen-wireframe.png" alt="Homescreen wireframe van de vergader app" />
+          <div class="image-caption">
+            Dit is het home screen van de wireframes. In dit scherm heb ik de locatie, beschikbare
+            ruimtes en aanbevolen ruimtes visueel uitgewerkt zodat de gebruiker snel overzicht krijgt.
+          </div>
+        </div>
+
+        <div class="image-showcase">
+          <img src="detail-wireframe-studio-a.png" alt="Detailpagina wireframe van Studio A" />
+          <div class="image-caption">
+            Dit is de detailpagina van een vergaderruimte binnen de app. In dit scherm heb ik
+            belangrijke informatie zoals faciliteiten, reviews, beschikbare tijden en een duidelijke
+            reserveerknop uitgewerkt. Ook is zichtbaar gemaakt wanneer een ruimte niet beschikbaar is.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="card">
+        <h2 class="section-title">Vaardigheden en tools</h2>
+        <p class="section-subtitle">
+          Dit zijn vaardigheden en tools die ik inzet tijdens projecten en opdrachten.
+        </p>
+
+        <div class="skills">
+          <span class="skill">Samenwerken</span>
+          <span class="skill">Communiceren</span>
+          <span class="skill">Probleemoplossend denken</span>
+          <span class="skill">Onderzoek</span>
+          <span class="skill">Ontwerpen</span>
+          <span class="skill">Figma</span>
+          <span class="skill">Canva</span>
+          <span class="skill">Arduino</span>
+          <span class="skill">HTML/CSS</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Python</span>
+          <span class="skill">Wireframing</span>
+          <span class="skill">Presenteren</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2 class="section-title">Reflectie en ontwikkeling</h2>
+        <p class="section-subtitle">
+          Tijdens sprint 1 heb ik mezelf niet alleen inhoudelijk ontwikkeld, maar ook in de manier
+          waarop ik samenwerk, feedback verwerk en mijn resultaten presenteer.
+        </p>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <h3>Wat ik heb geleerd</h3>
+            <p>
+              Ik heb geleerd hoe belangrijk het is om ontwerpkeuzes goed te onderbouwen met onderzoek
+              en gebruikersinzichten. Ook merkte ik dat feedback van anderen echt helpt om wireframes
+              en flows duidelijker en logischer te maken. Daarnaast heb ik ervaren dat ik het leuk vind
+              om verschillende soorten werk te combineren, zoals onderzoek, design en technische taken.
+            </p>
+          </div>
+          <div class="info-box">
+            <h3>Waar ik in wil groeien</h3>
+            <p>
+              Ik wil mezelf verder ontwikkelen in het nog sterker presenteren van mijn werk en het nog
+              beter motiveren van ontwerpkeuzes. Ook wil ik in volgende sprints meer laten zien hoe ik
+              testresultaten kan vertalen naar concrete verbeteringen in een ontwerp.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 22px;">
+          <h3>Conclusie sprint 1</h3>
+          <p>
+            Als ik terugkijk op sprint 1, zie ik dat ik op meerdere manieren waarde heb toegevoegd aan
+            het project. Ik heb gewerkt aan onderzoek, doelgroepanalyse, wireframes, testen en ook aan
+            een technisch onderdeel binnen de escape room. Daardoor was mijn bijdrage best breed en kon
+            ik op verschillende momenten iets betekenen voor het team. Wat ik sterk vind aan mijn eigen
+            rol is dat ik analyses en ideeën niet alleen bedenk, maar ook omzet in concrete producten.
+            Deze sprint heeft mij laten zien dat ik zowel creatief als analytisch kan bijdragen en dat
+            ik steeds beter word in het maken van onderbouwde ontwerpkeuzes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card contact-box">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+          Neem gerust contact met mij op voor vragen, samenwerkingen of meer informatie over mijn werk.
+        </p>
+        <p><strong>Naam:</strong> Berk Tanriverdio</p>
+        <p><strong>E-mail:</strong> berk_1009@hotmail.com</p>
+        <p><strong>Instagram:</strong> berkbt_</p>
+        <p><strong>Figma:</strong> <a href="Figma high fidelity (1).pdf" target="_blank">Bekijk mijn Figma-ontwerp</a></p>
+        <p><strong>CV:</strong> <a href="Curriculum Vitae_Berk Tanriverdio v2.pdf" target="_blank">Bekijk mijn cv</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Berk Tanriverdio | Persoonlijk portfolio
+    </div>
+  </footer>
+</body>
+</html>
